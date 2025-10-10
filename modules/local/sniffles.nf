@@ -25,6 +25,10 @@ process SNIFFLES {
         -v ${meta.id}_sniffles.vcf \
         -t $task.cpus
 
+    # Dirty fix of: https://github.com/nf-core/nanoseq/issues/276
+    sed -i '229 i ##FILTER=<ID=STRANDBIAS,Description=\"Strand bias\">' ${meta.id}_sniffles.vcf
+
+
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         sniffles: \$(sniffles --help 2>&1 | grep Version |sed 's/^.*Version: //')
