@@ -6,6 +6,7 @@ include { MEDAKA_VARIANT                        } from '../../modules/local/meda
 include { TABIX_BGZIP as MEDAKA_BGZIP_VCF       } from '../../modules/nf-core/tabix/bgzip/main'
 include { TABIX_TABIX as MEDAKA_TABIX_VCF       } from '../../modules/nf-core/tabix/tabix/main'
 include { DEEPVARIANT                           } from '../../modules/local/deepvariant'
+include { DEEPVARIANT_PANGENOME                 } from '../../modules/local/deepvariant_pangenome'
 include { TABIX_TABIX as DEEPVARIANT_TABIX_VCF  } from '../../modules/nf-core/tabix/tabix/main'
 include { TABIX_TABIX as DEEPVARIANT_TABIX_GVCF } from '../../modules/nf-core/tabix/tabix/main'
 include { PEPPER_MARGIN_DEEPVARIANT             } from '../../modules/local/pepper_margin_deepvariant'
@@ -58,6 +59,30 @@ workflow SHORT_VARIANT_CALLING {
         ch_short_calls_vcf  = DEEPVARIANT.out.vcf
         ch_short_calls_gvcf = DEEPVARIANT.out.gvcf
         ch_versions = ch_versions.mix(DEEPVARIANT.out.versions)
+
+        /*
+         * Index deepvariant vcf.gz
+         */
+        DEEPVARIANT_TABIX_VCF( ch_short_calls_vcf )
+        ch_short_calls_vcf_tbi  = DEEPVARIANT_TABIX_VCF.out.tbi
+        ch_versions = ch_versions.mix(DEEPVARIANT_TABIX_VCF.out.versions)
+
+        /*
+         * Index deepvariant g.vcf.gz
+         */
+        DEEPVARIANT_TABIX_GVCF( ch_short_calls_gvcf )
+        ch_short_calls_gvcf_tbi  = DEEPVARIANT_TABIX_GVCF.out.tbi
+        ch_versions = ch_versions.mix(DEEPVARIANT_TABIX_VCF.out.versions)
+
+    } else if (params.variant_caller == 'deepvariant_pangenome') {
+
+        /*
+        * Call variants with deepvariant
+        */
+        DEEPVARIANT_PANGENOME( ch_view_sortbam, ch_fasta, ch_fai )
+        ch_short_calls_vcf  = DEEPVARIANT_PANGENOME.out.vcf
+        ch_short_calls_gvcf = DEEPVARIANT_PANGENOME.out.gvcf
+        ch_versions = ch_versions.mix(DEEPVARIANT_PANGENOME.out.versions)
 
         /*
          * Index deepvariant vcf.gz

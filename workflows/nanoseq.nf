@@ -69,8 +69,8 @@ if (params.call_variants) {
     if (params.protocol != 'DNA') {
         exit 1, "Invalid protocol option: ${params.protocol}. Valid options: 'DNA'"
     }
-    if (!params.skip_vc && params.variant_caller != 'medaka' && params.variant_caller != 'deepvariant' && params.variant_caller != 'pepper_margin_deepvariant') {
-        exit 1, "Invalid variant caller option: ${params.variant_caller}. Valid options: 'medaka', 'deepvariant' or 'pepper_margin_deepvariant'"
+    if (!params.skip_vc && params.variant_caller != 'medaka' && params.variant_caller != 'deepvariant' && params.variant_caller != 'deepvariant_pangenome' && params.variant_caller != 'pepper_margin_deepvariant') {
+        exit 1, "Invalid variant caller option: ${params.variant_caller}. Valid options: 'medaka', 'deepvariant', 'deepvariant_pangenome' or 'pepper_margin_deepvariant'"
     }
     if (!params.skip_sv && params.structural_variant_caller != 'sniffles' && params.structural_variant_caller != 'cutesv') {
         exit 1, "Invalid structural variant caller option: ${params.structural_variant_caller}. Valid options: 'sniffles', 'cutesv"
