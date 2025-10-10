@@ -6,9 +6,11 @@ include { MEDAKA_VARIANT                        } from '../../modules/local/meda
 include { TABIX_BGZIP as MEDAKA_BGZIP_VCF       } from '../../modules/nf-core/tabix/bgzip/main'
 include { TABIX_TABIX as MEDAKA_TABIX_VCF       } from '../../modules/nf-core/tabix/tabix/main'
 include { DEEPVARIANT                           } from '../../modules/local/deepvariant'
-include { DEEPVARIANT_PANGENOME                 } from '../../modules/local/deepvariant_pangenome'
 include { TABIX_TABIX as DEEPVARIANT_TABIX_VCF  } from '../../modules/nf-core/tabix/tabix/main'
 include { TABIX_TABIX as DEEPVARIANT_TABIX_GVCF } from '../../modules/nf-core/tabix/tabix/main'
+include { DEEPVARIANT_PANGENOME                 } from '../../modules/local/deepvariant_pangenome'
+include { TABIX_TABIX as DEEPVARIANT_PANGENOME_TABIX_VCF  } from '../../modules/nf-core/tabix/tabix/main'
+include { TABIX_TABIX as DEEPVARIANT_PANGENOME_TABIX_GVCF } from '../../modules/nf-core/tabix/tabix/main'
 include { PEPPER_MARGIN_DEEPVARIANT             } from '../../modules/local/pepper_margin_deepvariant'
 
 workflow SHORT_VARIANT_CALLING {
@@ -87,16 +89,16 @@ workflow SHORT_VARIANT_CALLING {
         /*
          * Index deepvariant vcf.gz
          */
-        DEEPVARIANT_TABIX_VCF( ch_short_calls_vcf )
-        ch_short_calls_vcf_tbi  = DEEPVARIANT_TABIX_VCF.out.tbi
-        ch_versions = ch_versions.mix(DEEPVARIANT_TABIX_VCF.out.versions)
+        DEEPVARIANT_PANGENOME_TABIX_VCF( ch_short_calls_vcf )
+        ch_short_calls_vcf_tbi  = DEEPVARIANT_PANGENOME_TABIX_VCF.out.tbi
+        ch_versions = ch_versions.mix(DEEPVARIANT_PANGENOME_TABIX_VCF.out.versions)
 
         /*
          * Index deepvariant g.vcf.gz
          */
-        DEEPVARIANT_TABIX_GVCF( ch_short_calls_gvcf )
-        ch_short_calls_gvcf_tbi  = DEEPVARIANT_TABIX_GVCF.out.tbi
-        ch_versions = ch_versions.mix(DEEPVARIANT_TABIX_VCF.out.versions)
+        DEEPVARIANT_PANGENOME_TABIX_GVCF( ch_short_calls_gvcf )
+        ch_short_calls_gvcf_tbi  = DEEPVARIANT_PANGENOME_TABIX_GVCF.out.tbi
+        ch_versions = ch_versions.mix(DEEPVARIANT_PANGENOME_TABIX_VCF.out.versions)
 
     } else {
 
