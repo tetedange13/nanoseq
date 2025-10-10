@@ -2,16 +2,16 @@
  * Short variant calling test
  */
 
-include { MEDAKA_VARIANT                        } from '../../modules/local/medaka_variant'
-include { TABIX_BGZIP as MEDAKA_BGZIP_VCF       } from '../../modules/nf-core/tabix/bgzip/main'
-include { TABIX_TABIX as MEDAKA_TABIX_VCF       } from '../../modules/nf-core/tabix/tabix/main'
-include { DEEPVARIANT                           } from '../../modules/local/deepvariant'
-include { TABIX_TABIX as DEEPVARIANT_TABIX_VCF  } from '../../modules/nf-core/tabix/tabix/main'
-include { TABIX_TABIX as DEEPVARIANT_TABIX_GVCF } from '../../modules/nf-core/tabix/tabix/main'
-include { DEEPVARIANT_PANGENOME                 } from '../../modules/local/deepvariant_pangenome'
+include { MEDAKA_VARIANT                                  } from '../../modules/local/medaka_variant'
+include { TABIX_BGZIP as MEDAKA_BGZIP_VCF                 } from '../../modules/nf-core/tabix/bgzip/main'
+include { TABIX_TABIX as MEDAKA_TABIX_VCF                 } from '../../modules/nf-core/tabix/tabix/main'
+include { DEEPVARIANT                                     } from '../../modules/local/deepvariant'
+include { TABIX_TABIX as DEEPVARIANT_TABIX_VCF            } from '../../modules/nf-core/tabix/tabix/main'
+include { TABIX_TABIX as DEEPVARIANT_TABIX_GVCF           } from '../../modules/nf-core/tabix/tabix/main'
+include { DEEPVARIANT_PANGENOME                           } from '../../modules/local/deepvariant_pangenome'
 include { TABIX_TABIX as DEEPVARIANT_PANGENOME_TABIX_VCF  } from '../../modules/nf-core/tabix/tabix/main'
 include { TABIX_TABIX as DEEPVARIANT_PANGENOME_TABIX_GVCF } from '../../modules/nf-core/tabix/tabix/main'
-include { PEPPER_MARGIN_DEEPVARIANT             } from '../../modules/local/pepper_margin_deepvariant'
+include { PEPPER_MARGIN_DEEPVARIANT                       } from '../../modules/local/pepper_margin_deepvariant'
 
 workflow SHORT_VARIANT_CALLING {
 
