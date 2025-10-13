@@ -4,9 +4,10 @@ process CLAIR3 {
 
     conda 'bioconda::clair3==1.0.4'
     container 'hkubal/clair3:v1.0.4'
-    //container 'quay.io/biocontainers/clair3:1.0.4--py39hf5e1c6e_0'
+    // Biocontainer not working for Clair3
+    // -> See: https://github.com/HKU-BAL/Clair3/issues/98#issuecomment-1113949833
     //container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    //    'https://depot.galaxyproject.org/singularity/clair3:1.1.2--py310h779eee5_0' :
+    //    'https://depot.galaxyproject.org/singularity/clair3:1.0.4--py39hf5e1c6e_0' :
     //    'quay.io/biocontainers/clair3:1.0.4--py39hf5e1c6e_0' }"
 
     input:
