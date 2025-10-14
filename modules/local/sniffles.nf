@@ -21,9 +21,9 @@ process SNIFFLES {
     script:
     """
     sniffles \
-        -m  $input \
-        -v ${meta.id}_sniffles.vcf \
-        -t $task.cpus
+        --input $input \
+        --vcf ${meta.id}_sniffles.vcf \
+        --threads $task.cpus
 
     # Dirty fix of: https://github.com/nf-core/nanoseq/issues/276
     sed -i '229 i ##FILTER=<ID=STRANDBIAS,Description=\"Strand bias\">' ${meta.id}_sniffles.vcf
