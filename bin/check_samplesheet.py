@@ -113,6 +113,8 @@ def check_samplesheet(file_in, updated_path, file_out):
                     input_extensions.append("*.fq.gz")
                 elif input_file.endswith(".bam"):
                     input_extensions.append("*.bam")
+                elif input_file.endswith(".cram"):
+                    input_extensions.append("*.cram")
                 else:
                     if updated_path != "not_changed":
                         input_file = "/".join([updated_path, input_file.split("/")[-1]])

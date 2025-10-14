@@ -209,7 +209,7 @@ workflow NANOSEQ{
         } else {
             //ch_fastq = Channel.empty()
             ch_sample
-                .map { it -> if (it[6].toString().endsWith('.bam')) [ it[0], it[6], it[2], it[1], it[4], it[5] ] }
+                .map { it -> [ it[0], it[6], it[2], it[1], it[4], it[5] ] }
                 .set { ch_fastq }  // [ sample, input_file, fasta, barcode, is_transcripts, annot_str ]
         }
     }
