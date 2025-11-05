@@ -31,6 +31,7 @@ process DEEPVARIANT {
     /opt/deepvariant/bin/run_deepvariant \\
         --ref=${fasta} \\
         --reads=${input} \\
+        --sample_name=${meta.id} \\
         --output_vcf=${prefix}.vcf.gz \\
         --output_gvcf=${prefix}.g.vcf.gz \\
         ${args} \\
