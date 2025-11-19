@@ -3,9 +3,10 @@ process JAFFAL {
     label 'process_medium'
 
     conda "bioconda::jaffa=2.3.0"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/jaffa:2.3--hdfd78af_0' :
-        'quay.io/biocontainers/jaffa:2.3--hdfd78af_0' }"
+    container "docker.io/wdesaint/jaffal_older_bpipe:latest"
+    //container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    //    'https://depot.galaxyproject.org/singularity/jaffa:2.3--hdfd78af_0' :
+    //    'quay.io/biocontainers/jaffa:2.3--hdfd78af_0' }"
 
     input:
     tuple val(meta), path(fastq)
